@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container
+        {
+            width: 40%;
+            margin: auto;
+            border: 1px solid black;
+            padding: 20px;
+            text-align: center;
+        }
+        form
+        {
+            display: block;
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter details</h1>
+        <form>
+            <input type="number" id="cardnumber" placeholder="Enter card number">
+            <div>
+                <input type="number" id="cvv" placeholder="enter cvv">
+                <p>expiry date</p>
+                <input type="month" id="expiry">
+            </div>
+            <input type="text" placeholder="Enter name">
+            <button id="payment">Place order</button>
+        </form>
+    </div>
+</body>
+<script>
+    document.querySelector('#payment').addEventListener('click' , payment)
+    function payment()
+    {
+        event.preventDefault();
+        var cardnumber = document.querySelector('#cardnumber').value;
+        var cvv = document.querySelector('#cvv').value;
+        var expiry = document.querySelector('#expiry').value;
+        if(cardnumber.length == 16 && cvv.length == 3)
+        {
+            alert('Order palced');
+            window.location.href = 'products.html';
+        }
+        else{
+            alert('Incorrect details');
+        }
+    }
+</script>
+</html>

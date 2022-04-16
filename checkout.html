@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .address
+        {
+            margin:auto;
+            width: 40%;
+            display: block;
+            border: 1px solid black;
+            text-align: center;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        form
+        {
+            padding: 20px;
+            text-align: center;
+        }
+        form>input
+        {
+            margin: auto;
+            width: 90%;
+        }
+        a
+        {
+            text-decoration: none;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="address">
+        <h1>Enter your address</h1>
+        <form>
+            <input type="text" placeholder="Enter your address line 1">
+            <input type="text" placeholder="Enter your address line 2">
+            <div class="city">
+                <input type="text" placeholder="Enter city">
+                <input type="text" placeholder="Enter state">
+                <input type="text" placeholder="Enter pinocde">
+            </div>
+            <button class="payment"><a href="./payment.html">Complete Payment</a></button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./products.css">
+</head>
+<body>
+    <h1>Items added in cart</h1>
+    <div id="container">
+    </div>
+    <p style="margin-top: 80px">APPLY PROMOCODE</p>
+    <input type="text" id="promo" placeholder="Enter promo code">
+    <button onclick="applypromo()">Apply</button>
+    <p id="price"></p>
+    <button><a href="./checkout.html">Checkout</a></button>
+</body>
+<script>
+
+    var cartdata = JSON.parse(localStorage.getItem('cartdata')) || [];
+  
+    var amount = cartdata.reduce(function(sum,ele)
+    {
+        return sum + Number(ele.price);
+    },0);
+
+    var count=0;
+    function applypromo()
+    {
+        event.preventDefault();
+        var promocode = document.querySelector('#promo').value;
+        if(promocode == "masai30" && count==0)
+        {
+            count++;
+            alert('promocode applied');
+            amount -= amount*0.3;
+            document.getElementById('price').innerText = "Total price of your cart in Rs. "+Math.floor(amount);
+        }
+        else
+        {
+            alert('invalid promocode');
+        }
+    }
+
+    document.getElementById('price').innerText = "Total price of your cart in Rs. "+Math.floor(amount);
+
+    cartdata.forEach(function(cartitem,cartindex)
+    {
+
+        box = document.createElement('div');
+        box.setAttribute('class' , 'box');
+
+        var img = document.createElement('img');
+        img.src = cartitem.image_url;
+
+        var name = document.createElement('p');
+        name.innerText = cartitem.name;
+
+        var price = document.createElement('p');
+        price.innerText = cartitem.price;
+
+        var rating = document.createElement('p');
+        rating.innerText = cartitem.rating;
+
+        var remove = document.createElement('button');
+        remove.innerText = 'remove';
+
+        remove.addEventListener('click' , function()
+        {
+            cartdata.splice(cartindex,1);
+            alert('Item removed from cart');
+            localStorage.setItem('cartdata' , JSON.stringify(cartdata));
+            window.location.reload();
+        });
+
+        box.append(img,name,price,rating,remove);
+        document.querySelector('#container').append(box);
+    })
+</script>
+</html>
